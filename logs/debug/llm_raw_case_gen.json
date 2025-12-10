@@ -1,0 +1,39 @@
+{
+  "id": "chatcmpl-ClBMZEa4Pwl92RK1QPVvhpE8wGCq5",
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "{\n  \"0\": {\n    \"case_id\": \"kakao-only-friend-500k\",\n    \"seed\": \"카톡으로만 빌려준 돈\",\n    \"keyword\": \"카톡만으로 빌린 돈 받을 수 있나요\",\n    \"topic\": \"증거효력 / 채권회수\",\n    \"relationship\": \"친구\",\n    \"amount\": 500000,\n    \"situation\": \"오랜 친구에게 술값·생활비 명목으로 카카오톡 메시지(갚겠다는 약속 포함)만 남긴 채 50만원을 빌려줬음. 계좌이체나 영수증 등 다른 물적 증거는 없음. 친구가 갚지 않고 연락을 회피함.\",\n    \"goal\": \"카톡 대화만으로도 법적 효력이 있는지 확인하고, 우선적으로 시도할 수 있는 회수 방법(카톡 증거 정리, 내용증명, 합의서 작성, 소액소송 절차 등)을 단계별로 안내받고 싶음.\",\n    \"status\": \"todo\",\n    \"created_at\": \"2025-12-10T12:00:00+09:00\",\n    \"last_run_at\": null\n  },\n  \"1\": {\n    \"case_id\": \"kakao-only-roommate-2m\",\n    \"seed\": \"카톡으로만 빌려준 돈\",\n    \"keyword\": \"카카오톡 증거로 소액소송 가능 여부\",\n    \"topic\": \"증거보전 / 내용증명 / 소액소송\",\n    \"relationship\": \"전 동거인(룸메이트)\",\n    \"amount\": 2000000,\n    \"situation\": \"전 동거인에게 생활비 보조 명목으로 카톡으로만 200만원을 빌려줌. 상대방이 갚겠단 카톡은 여러 차례 있지만 실제 입금 기록은 없고 현재 연락두절 상태. 고액이라 법적 조치 고려 중이며, 카톡 캡처를 법정에서 인정받을 수 있을지 걱정됨.\",\n    \"goal\": \"카톡 메시지의 증거능력 확보(원본성·위·변조 방지 방법), 내용증명 발송 템플릿, 증거보전 및 소액재판(또는 지급명령) 준비 절차와 예상 비용·소요기간 안내를 받고 싶음.\",\n    \"status\": \"todo\",\n    \"created_at\": \"2025-12-10T12:00:00+09:00\",\n    \"last_run_at\": null\n  }\n}",
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "audio": null,
+        "function_call": null,
+        "tool_calls": null
+      }
+    }
+  ],
+  "created": 1765361131,
+  "model": "gpt-5-mini-2025-08-07",
+  "object": "chat.completion",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 1725,
+    "prompt_tokens": 191,
+    "total_tokens": 1916,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1152,
+      "rejected_prediction_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0
+    }
+  }
+}

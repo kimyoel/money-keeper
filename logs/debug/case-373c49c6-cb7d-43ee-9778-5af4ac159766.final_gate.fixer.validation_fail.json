@@ -1,0 +1,10 @@
+{
+  "issues": {
+    "headline": "headline too short (<10) or missing",
+    "sections": "no sections",
+    "first_section_body": "first section body too short (<50) or missing",
+    "slug": "slug missing",
+    "title": "title missing",
+    "description": "description missing"
+  }
+}

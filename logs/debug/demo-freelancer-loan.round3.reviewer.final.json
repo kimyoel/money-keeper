@@ -1,0 +1,6 @@
+{
+  "approved": false,
+  "reasons": [
+    "missing approved flag from reviewer response; treated as not approved."
+  ]
+}
