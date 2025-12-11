@@ -7,6 +7,9 @@ from typing import Any, Dict, List
 from .config import CODE_DEBUG_MODEL
 from .llm_client import call_llm_json
 
+# 현재 cron 경로에서는 사용하지 않고, 필요 시 수동으로
+# `python -m automation.code_debugger` 형태로 실행한다.
+
 LOGS_DIR = Path("logs")
 DEPLOY_FAIL_LOG = LOGS_DIR / "deploy_failures.jsonl"
 REPORTS_DIR = Path("reports")

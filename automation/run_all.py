@@ -6,7 +6,6 @@ from typing import Dict, Iterable, List
 
 from .html_and_deploy import run_html_and_deploy
 from .pipeline_pages import run_page_pipeline
-from .code_debugger import run_code_debugger
 
 # 한 번 실행 시 status='todo' 케이스 중 최대 max_cases_per_run개를 처리합니다. (기본 10개)
 
@@ -60,7 +59,10 @@ def run_all_cases(test_lenient: bool = False, max_cases_per_run: int = 10) -> Li
     # 새 deploy 실패가 생겼으면 코드 디버거를 실행
     after_fail_count = count_failures()
     if after_fail_count > before_fail_count:
-        run_code_debugger(limit=3)
+        # TODO: deploy_failures.jsonl를 바탕으로 자동 디버거를 돌리고 싶으면
+        # run_code_debugger(limit=3)를 다시 활성화하고, LLM 빈 응답/에러를 try/except로 감싸서
+        # cron 실행을 방해하지 않도록 보완할 것.
+        # run_code_debugger(limit=3)
 
     save_cases(cases)
     return results
