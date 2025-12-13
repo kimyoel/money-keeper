@@ -63,6 +63,7 @@ def run_all_cases(test_lenient: bool = False, max_cases_per_run: int = 10) -> Li
         # run_code_debugger(limit=3)를 다시 활성화하고, LLM 빈 응답/에러를 try/except로 감싸서
         # cron 실행을 방해하지 않도록 보완할 것.
         # run_code_debugger(limit=3)
+        pass  # 지금은 아무 것도 하지 않음
 
     save_cases(cases)
     return results
