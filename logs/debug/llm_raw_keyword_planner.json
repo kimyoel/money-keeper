@@ -1,12 +1,12 @@
 {
-  "id": "chatcmpl-ClBLzQrwJc4X5I1RgEQG3hTrB1Obf",
+  "id": "chatcmpl-CmNWBsbyGIDSRuLrGmuoO76feDA5l",
   "choices": [
     {
       "finish_reason": "stop",
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "  {\n    \"error\": \"응답은 최상위 JSON 배열이어야 합니다.\"\n  }",
+        "content": "  \n  {\n    \"keyword\": \"카톡 증거만으로 빌려준 돈 돌려받는 방법\",\n    \"intent\": \"카카오톡 대화·계좌이체 등만으로 채무 회수(지급명령·소송·내용증명 등) 가능한지와 구체적 절차를 알고 싶음\",\n    \"score\": 0.92\n  }\n  \n  \n  \n ",
         "refusal": null,
         "role": "assistant",
         "annotations": [],
@@ -16,24 +16,24 @@
       }
     }
   ],
-  "created": 1765361095,
+  "created": 1765646183,
   "model": "gpt-5-mini-2025-08-07",
   "object": "chat.completion",
   "service_tier": "default",
   "system_fingerprint": null,
   "usage": {
-    "completion_tokens": 542,
-    "prompt_tokens": 3209,
-    "total_tokens": 3751,
+    "completion_tokens": 485,
+    "prompt_tokens": 3169,
+    "total_tokens": 3654,
     "completion_tokens_details": {
       "accepted_prediction_tokens": 0,
       "audio_tokens": 0,
-      "reasoning_tokens": 512,
+      "reasoning_tokens": 384,
       "rejected_prediction_tokens": 0
     },
     "prompt_tokens_details": {
       "audio_tokens": 0,
-      "cached_tokens": 0
+      "cached_tokens": 2816
     }
   }
 }

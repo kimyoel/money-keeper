@@ -1,12 +1,12 @@
 {
-  "id": "chatcmpl-ClBMZEa4Pwl92RK1QPVvhpE8wGCq5",
+  "id": "chatcmpl-CmNX0lybl3OUj5W0yAiPe8Hv2winA",
   "choices": [
     {
       "finish_reason": "stop",
       "index": 0,
       "logprobs": null,
       "message": {
-        "content": "{\n  \"0\": {\n    \"case_id\": \"kakao-only-friend-500k\",\n    \"seed\": \"카톡으로만 빌려준 돈\",\n    \"keyword\": \"카톡만으로 빌린 돈 받을 수 있나요\",\n    \"topic\": \"증거효력 / 채권회수\",\n    \"relationship\": \"친구\",\n    \"amount\": 500000,\n    \"situation\": \"오랜 친구에게 술값·생활비 명목으로 카카오톡 메시지(갚겠다는 약속 포함)만 남긴 채 50만원을 빌려줬음. 계좌이체나 영수증 등 다른 물적 증거는 없음. 친구가 갚지 않고 연락을 회피함.\",\n    \"goal\": \"카톡 대화만으로도 법적 효력이 있는지 확인하고, 우선적으로 시도할 수 있는 회수 방법(카톡 증거 정리, 내용증명, 합의서 작성, 소액소송 절차 등)을 단계별로 안내받고 싶음.\",\n    \"status\": \"todo\",\n    \"created_at\": \"2025-12-10T12:00:00+09:00\",\n    \"last_run_at\": null\n  },\n  \"1\": {\n    \"case_id\": \"kakao-only-roommate-2m\",\n    \"seed\": \"카톡으로만 빌려준 돈\",\n    \"keyword\": \"카카오톡 증거로 소액소송 가능 여부\",\n    \"topic\": \"증거보전 / 내용증명 / 소액소송\",\n    \"relationship\": \"전 동거인(룸메이트)\",\n    \"amount\": 2000000,\n    \"situation\": \"전 동거인에게 생활비 보조 명목으로 카톡으로만 200만원을 빌려줌. 상대방이 갚겠단 카톡은 여러 차례 있지만 실제 입금 기록은 없고 현재 연락두절 상태. 고액이라 법적 조치 고려 중이며, 카톡 캡처를 법정에서 인정받을 수 있을지 걱정됨.\",\n    \"goal\": \"카톡 메시지의 증거능력 확보(원본성·위·변조 방지 방법), 내용증명 발송 템플릿, 증거보전 및 소액재판(또는 지급명령) 준비 절차와 예상 비용·소요기간 안내를 받고 싶음.\",\n    \"status\": \"todo\",\n    \"created_at\": \"2025-12-10T12:00:00+09:00\",\n    \"last_run_at\": null\n  }\n}",
+        "content": "{\n  \"0\": {\n    \"case_id\": \"kakao-only-loan-jiin-500000\",\n    \"seed\": \"카톡으로만 빌려준 돈\",\n    \"keyword\": \"카톡 증거만으로 빌려준 돈 돌려받는 방법\",\n    \"topic\": \"카카오톡·계좌이체 기록만으로 채무 회수 가능한 절차(지급명령·소송·내용증명 등)\",\n    \"relationship\": \"지인\",\n    \"amount\": 500000,\n    \"situation\": \"몇 년 전 지인에게 50만원을 빌려주고 카카오톡으로 상환 약속을 받은 뒤, 은행 계좌이체 기록(내역서)과 카톡 대화만 남아 있음. 상대는 지금은 연락을 피하고 있고, 별도의 차용계약서나 각서, 공증 같은 문서는 없음. 상대 계좌는 확인되며 마지막 약속에서 분할 상환 의사 표시는 있었음.\",\n    \"goal\": \"카카오톡 대화와 계좌이체 내역만으로 우선적으로 할 수 있는 대응(내용증명 발송, 지급명령 신청 가능성, 소액 재판 절차에서 필요한 증거 준비물과 예상되는 절차 순서)을 알고 싶음. 필요 서류 목록과 다음 단계 안내. 지연이자·손해배상은 추가 청구 가능성 수준에서만 검토.\",\n    \"status\": \"todo\",\n    \"created_at\": \"2025-12-13T09:00:00Z\",\n    \"last_run_at\": null\n  },\n  \"1\": {\n    \"case_id\": \"kakao-only-loan-partner-2500000\",\n    \"seed\": \"카톡으로만 빌려준 돈\",\n    \"keyword\": \"카톡 증거만으로 빌려준 돈 돌려받는 방법\",\n    \"topic\": \"사업 관계에서 카톡·계좌이체 증거로 고액 채무 회수 가능성 및 절차(내용증명·지급명령·민사소송)\",\n    \"relationship\": \"거래 상대방(사업 파트너)\",\n    \"amount\": 2500000,\n    \"situation\": \"사업 파트너에게 운영자금 명목으로 250만원을 개인 계좌로 이체했고, 이후 카카오톡으로 상환 일정과 약속을 주고받은 기록만 존재. 상대는 일부만 반환했으며 추가 변제 약속을 지키지 않음. 별도의 계약서나 영수증은 없고, 은행 이체 내역과 카톡 대화가 주된 증거임.\",\n    \"goal\": \"카톡·계좌이체 기록을 바탕으로 내용증명 발송 이후 지급명령 또는 민사소송을 준비하려 함. 소송 전 증거 보강 방법(대화 원본 보존, 스크린샷·날짜·송금내역 정리 등)과 각 절차별 특징, 예상되는 제출서류 목록을 알고 싶음. 지연이자나 손해배상 청구는 추후 검토 가능한 추가 청구 가능성으로만 언급하길 원함.\",\n    \"status\": \"todo\",\n    \"created_at\": \"2025-12-13T09:00:00Z\",\n    \"last_run_at\": null\n  }\n}",
         "refusal": null,
         "role": "assistant",
         "annotations": [],
@@ -16,19 +16,19 @@
       }
     }
   ],
-  "created": 1765361131,
+  "created": 1765646234,
   "model": "gpt-5-mini-2025-08-07",
   "object": "chat.completion",
   "service_tier": "default",
   "system_fingerprint": null,
   "usage": {
-    "completion_tokens": 1725,
-    "prompt_tokens": 191,
-    "total_tokens": 1916,
+    "completion_tokens": 1765,
+    "prompt_tokens": 401,
+    "total_tokens": 2166,
     "completion_tokens_details": {
       "accepted_prediction_tokens": 0,
       "audio_tokens": 0,
-      "reasoning_tokens": 1152,
+      "reasoning_tokens": 1024,
       "rejected_prediction_tokens": 0
     },
     "prompt_tokens_details": {
