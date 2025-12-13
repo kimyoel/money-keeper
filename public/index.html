@@ -7,12 +7,137 @@
   <title>떼인 돈 계산기 - 상황별 미수금 가이드</title>
   <meta name="description" content="프리랜서·지인·거래처 미수금 상황을 유형별로 모아, 지연이자 계산 도구와 함께 참고할 수 있는 일반적인 대응 흐름을 정리했습니다.">
   <link rel="stylesheet" href="./styles.css">
+  <style>
+    /* 필터/검색 영역 스타일 */
+    .filter-section {
+      margin-bottom: 24px;
+    }
+    .search-box {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .search-box:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .category-btn {
+      padding: 8px 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .category-btn:hover {
+      background: #f3f4f6;
+    }
+    .category-btn.active {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+    .sort-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 14px;
+      color: #6b7280;
+    }
+    .sort-btn {
+      padding: 6px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .sort-btn:hover {
+      background: #f3f4f6;
+    }
+    .sort-btn.active {
+      background: #1f2937;
+      color: white;
+      border-color: #1f2937;
+    }
+    .results-count {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+    .no-results {
+      text-align: center;
+      padding: 48px 24px;
+      color: #6b7280;
+    }
+    .no-results-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .loading {
+      text-align: center;
+      padding: 48px 24px;
+      color: #6b7280;
+    }
+    .loading-spinner {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    /* 페이지네이션 */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+    }
+    .page-btn {
+      padding: 8px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .page-btn:hover:not(:disabled) {
+      background: #f3f4f6;
+    }
+    .page-btn.active {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 <body>
   <div class="site-shell">
     <header class="site-header">
       <a class="brand" href="./index.html"><span>💸</span>떼인 돈 계산기</a>
-      <a class="ghost-link" href="../index.html">기존 계산기(루트)로 이동</a>
+      <a class="ghost-link" href="./calculator.html">떼인 돈 계산기 열기</a>
     </header>
 
     <section class="hero">
@@ -22,115 +147,277 @@
         소액 체불부터 지인 대여금까지, 자주 겪는 미수금 상황들을 묶어 소개합니다.
       </p>
       <p class="intro">
-        이 페이지는 ‘떼인 돈 계산기’와 함께 보는 상황별 안내 모음입니다. 아래 사례들은 실제로 많이 나오는 미수금 상황을 바탕으로, 어떤 점을 미리 정리해 두면 좋은지와 다음 단계에서 고민해 볼 수 있는 선택지를 정리한 내용입니다. 각 가이드는 일반적인 정보를 담은 것으로, 개별 사건에 대한 법률 자문이나 해결을 보장하지는 않습니다.
+        이 페이지는 '떼인 돈 계산기'와 함께 보는 상황별 안내 모음입니다. 아래 사례들은 실제로 많이 나오는 미수금 상황을 바탕으로, 어떤 점을 미리 정리해 두면 좋은지와 다음 단계에서 고민해 볼 수 있는 선택지를 정리한 내용입니다. 각 가이드는 일반적인 정보를 담은 것으로, 개별 사건에 대한 법률 자문이나 해결을 보장하지는 않습니다.
       </p>
     </section>
 
     <section class="section">
       <h2>상황별 가이드 목록</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">프리랜서 · 소액</div>
-          <h3>떼인 디자인비 90만 원, 소액이라 포기? 프리랜서 미수금 정리법</h3>
-          <p>소송 비용이 부담될 때 노동청 진정이나 지급명령 같은 절차를 비교해 볼 수 있도록 정리했습니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./freelancer-design-90.html">상세 보기</a>
-          </div>
+      
+      <!-- 필터/검색 영역 -->
+      <div class="filter-section">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 제목이나 설명으로 검색...">
+        
+        <div class="category-filters" id="categoryFilters">
+          <!-- 카테고리 버튼들이 JavaScript로 삽입됨 -->
         </div>
-
-        <div class="card">
-          <div class="tag">폐업 · 임금체불</div>
-          <h3>헬스장 폐업 후 잠적한 사장, 강사료 체불 대지급금 신청 가이드</h3>
-          <p>사업주와 연락이 닿지 않아도 노동청 진정과 대지급금 제도를 어떻게 검토할지 살펴볼 수 있도록 안내합니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./yoga-instructor-gym-closed.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">건설 · 일용직</div>
-          <h3>건설 현장 일당 체불, 근로계약서 없어도 노동청 신고하는 법</h3>
-          <p>출역 일보와 통장 내역을 모아 체불 신고를 준비하고 책임 주체를 정리해 보는 데 도움이 되는 흐름을 담았습니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./construction-daily-wage-150.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">출판 · 소액 체불</div>
-          <h3>출판사 외주비 상습 체불, 60만 원 소액이라 무시한다면?</h3>
-          <p>전자소송 지급명령 등 절차를 참고해 인지 부담을 줄이고 지연이자 청구를 검토해 볼 수 있는 방법을 정리했습니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./editor-freelancer-60.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">마케팅 · 용역비</div>
-          <h3>마케팅 용역비 미지급, 불리한 계약서와 성과 시비 대처법</h3>
-          <p>성과 논쟁에 대비해 제출·승인 증빙을 정리하고, 가압류나 지급 청구 같은 선택지를 검토해 볼 때 도움이 되는 포인트를 모았습니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./marketer-contract-dispute-500.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">지인 · 대여금</div>
-          <h3>차용증 없는 친구 돈거래 1천만 원, 증여 아닌 대여금 입증하기</h3>
-          <p>계좌이체와 대화 기록을 정리해 대여 사실을 설명하고, 독촉·신청 절차를 고민해 볼 때 참고할 수 있는 흐름을 제공합니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./friend-loan-no-contract-1000.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">직장 · 대여금</div>
-          <h3>직장 동료에게 빌려준 급전 500만 원, 지급명령 신청 절차</h3>
-          <p>퇴사한 동료에게 대여금을 요구할 때 지급명령 등 절차를 어떻게 준비할지 단계별로 참고할 수 있도록 정리했습니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./colleague-urgent-loan-500.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">중고거래 · 사기</div>
-          <h3>중고나라 사기 피해 30만 원, 경찰 신고와 배상명령 신청</h3>
-          <p>형사 재판 과정에서 배상명령 제도를 함께 고려해 볼 수 있도록 절차 흐름을 안내합니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./second-hand-fraud-30.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">연인 · 대여금</div>
-          <h3>헤어진 연인에게 빌려준 2천만 원, 데이트 비용 vs 대여금 구분</h3>
-          <p>생활비·월세 대납 등을 대여금과 구분해 기록을 남기고, 청구 범위를 정리하는 데 도움이 되는 체크포인트를 담았습니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./ex-lover-living-expense-2000.html">상세 보기</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="tag">서비스 · 소액 분쟁</div>
-          <h3>입주 청소 잔금 40만 원 미지급, 고객 불만과 대금 청구</h3>
-          <p>작업 완료 사진과 견적서를 모아두면 소액심판·내용증명 등 대응 절차를 검토할 때 도움이 됩니다.</p>
-          <div class="btn-row">
-            <a class="cta" href="./cleaning-service-dispute-40.html">상세 보기</a>
-          </div>
+        
+        <div class="sort-controls">
+          <span>정렬:</span>
+          <button class="sort-btn active" data-sort="newest">최신순</button>
+          <button class="sort-btn" data-sort="oldest">오래된순</button>
+          <button class="sort-btn" data-sort="title">제목순</button>
         </div>
       </div>
+      
+      <div id="resultsCount" class="results-count"></div>
+      
+      <!-- 가이드 목록 -->
+      <div class="grid" id="guideGrid">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>가이드 목록을 불러오는 중...</p>
+        </div>
+      </div>
+      
+      <!-- 페이지네이션 -->
+      <div class="pagination" id="pagination"></div>
     </section>
 
     <section class="section">
       <h2>떼인 돈 계산기 바로 사용하기</h2>
       <p>브라우저에서 바로 동작하며 입력값을 서버에 저장하지 않습니다. 원금과 지급 예정일만 넣어 지연이자와 총 청구액을 확인해 보세요.</p>
-      <a class="cta" href="../index.html">계산기 열기</a>
+      <a class="cta" href="./calculator.html">계산기 열기</a>
     </section>
 
     <p class="footer">본 페이지들은 법률 자문이 아니며, 실제 조치 전에는 관련 기관 안내나 법률 전문가의 대응 절차 안내를 참고해 주세요.</p>
     <!-- Netlify 배포 시 `public/`을 루트로 설정하면 바로 동작합니다. -->
     <p class="footer" style="font-size:12px;color:#6b7280;">본 페이지의 안내는 일반적인 절차를 정리한 것으로, 개별 사건에 대한 법률 자문이 아닙니다.</p>
   </div>
+
+  <script>
+    // ========== 상태 ==========
+    let allPages = [];
+    let filteredPages = [];
+    let currentCategory = 'all';
+    let currentSort = 'newest';
+    let searchQuery = '';
+    const ITEMS_PER_PAGE = 12;
+    let currentPage = 1;
+
+    // ========== DOM 요소 ==========
+    const guideGrid = document.getElementById('guideGrid');
+    const categoryFilters = document.getElementById('categoryFilters');
+    const searchInput = document.getElementById('searchInput');
+    const resultsCount = document.getElementById('resultsCount');
+    const pagination = document.getElementById('pagination');
+
+    // ========== 초기화 ==========
+    async function init() {
+      try {
+        const response = await fetch('./pages.json');
+        if (!response.ok) throw new Error('Failed to fetch pages.json');
+        allPages = await response.json();
+        
+        // 카테고리 버튼 생성
+        renderCategoryButtons();
+        
+        // 정렬 버튼 이벤트
+        document.querySelectorAll('.sort-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSort = btn.dataset.sort;
+            currentPage = 1;
+            applyFiltersAndRender();
+          });
+        });
+        
+        // 검색 이벤트
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim().toLowerCase();
+          currentPage = 1;
+          applyFiltersAndRender();
+        });
+        
+        // 초기 렌더링
+        applyFiltersAndRender();
+      } catch (error) {
+        console.error('Error loading pages:', error);
+        guideGrid.innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">😵</div>
+            <p>가이드 목록을 불러오는 데 실패했습니다.</p>
+            <p style="font-size: 12px; margin-top: 8px;">잠시 후 다시 시도해 주세요.</p>
+          </div>
+        `;
+      }
+    }
+
+    // ========== 카테고리 버튼 생성 ==========
+    function renderCategoryButtons() {
+      // 카테고리 추출 및 중복 제거
+      const categories = [...new Set(allPages.map(p => p.category).filter(Boolean))];
+      categories.sort();
+      
+      let html = '<button class="category-btn active" data-category="all">전체</button>';
+      categories.forEach(cat => {
+        html += `<button class="category-btn" data-category="${cat}">${cat}</button>`;
+      });
+      categoryFilters.innerHTML = html;
+      
+      // 이벤트 바인딩
+      categoryFilters.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          categoryFilters.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCategory = btn.dataset.category;
+          currentPage = 1;
+          applyFiltersAndRender();
+        });
+      });
+    }
+
+    // ========== 필터 및 정렬 적용 ==========
+    function applyFiltersAndRender() {
+      // 필터링
+      filteredPages = allPages.filter(page => {
+        // 카테고리 필터
+        if (currentCategory !== 'all' && page.category !== currentCategory) {
+          return false;
+        }
+        // 검색 필터
+        if (searchQuery) {
+          const title = (page.title || '').toLowerCase();
+          const desc = (page.description || '').toLowerCase();
+          const cat = (page.category || '').toLowerCase();
+          if (!title.includes(searchQuery) && !desc.includes(searchQuery) && !cat.includes(searchQuery)) {
+            return false;
+          }
+        }
+        return true;
+      });
+      
+      // 정렬
+      filteredPages.sort((a, b) => {
+        if (currentSort === 'newest') {
+          return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+        } else if (currentSort === 'oldest') {
+          return new Date(a.created_at || 0) - new Date(b.created_at || 0);
+        } else if (currentSort === 'title') {
+          return (a.title || '').localeCompare(b.title || '', 'ko');
+        }
+        return 0;
+      });
+      
+      // 렌더링
+      renderPages();
+      renderPagination();
+      updateResultsCount();
+    }
+
+    // ========== 페이지 렌더링 ==========
+    function renderPages() {
+      if (filteredPages.length === 0) {
+        guideGrid.innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">🔍</div>
+            <p>검색 결과가 없습니다.</p>
+            <p style="font-size: 12px; margin-top: 8px;">다른 검색어나 카테고리를 선택해 보세요.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      // 페이지네이션 적용
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      const pagesToRender = filteredPages.slice(start, end);
+      
+      let html = '';
+      pagesToRender.forEach(page => {
+        html += `
+          <div class="card">
+            <div class="tag">${page.category || '기타'}</div>
+            <h3>${page.title}</h3>
+            <p>${page.description || ''}</p>
+            <div class="btn-row">
+              <a class="cta" href="./${page.slug}.html">상세 보기</a>
+            </div>
+          </div>
+        `;
+      });
+      guideGrid.innerHTML = html;
+    }
+
+    // ========== 페이지네이션 렌더링 ==========
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredPages.length / ITEMS_PER_PAGE);
+      
+      if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+      }
+      
+      let html = '';
+      
+      // 이전 버튼
+      html += `<button class="page-btn" data-page="prev" ${currentPage === 1 ? 'disabled' : ''}>← 이전</button>`;
+      
+      // 페이지 번호
+      for (let i = 1; i <= totalPages; i++) {
+        if (totalPages > 7) {
+          // 많은 페이지일 때 축약 표시
+          if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+          } else if (i === currentPage - 2 || i === currentPage + 2) {
+            html += `<span style="padding: 8px 4px;">...</span>`;
+          }
+        } else {
+          html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+        }
+      }
+      
+      // 다음 버튼
+      html += `<button class="page-btn" data-page="next" ${currentPage === totalPages ? 'disabled' : ''}>다음 →</button>`;
+      
+      pagination.innerHTML = html;
+      
+      // 이벤트 바인딩
+      pagination.querySelectorAll('.page-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const page = btn.dataset.page;
+          if (page === 'prev' && currentPage > 1) {
+            currentPage--;
+          } else if (page === 'next' && currentPage < totalPages) {
+            currentPage++;
+          } else if (!isNaN(parseInt(page))) {
+            currentPage = parseInt(page);
+          }
+          applyFiltersAndRender();
+          // 스크롤 이동
+          guideGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+
+    // ========== 결과 수 표시 ==========
+    function updateResultsCount() {
+      const total = filteredPages.length;
+      const start = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+      const end = Math.min(currentPage * ITEMS_PER_PAGE, total);
+      
+      if (total === 0) {
+        resultsCount.textContent = '';
+      } else if (total <= ITEMS_PER_PAGE) {
+        resultsCount.textContent = `총 ${total}개의 가이드`;
+      } else {
+        resultsCount.textContent = `총 ${total}개 중 ${start}-${end}번째 표시`;
+      }
+    }
+
+    // ========== 시작 ==========
+    init();
+  </script>
 </body>
 </html>
-

@@ -7,8 +7,18 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
+from .site_catalog import (
+    build_sitemap,
+    copy_static_files_to_public,
+    extract_page_meta_from_page_json,
+    update_pages_json,
+    DEFAULT_BASE_URL,
+)
+
 LOGS_DIR = Path(__file__).resolve().parent.parent / "logs"
 DEPLOY_FAIL_LOG = LOGS_DIR / "deploy_failures.jsonl"
+ROOT_DIR = Path(__file__).resolve().parent.parent
+PUBLIC_DIR = ROOT_DIR / "public"
 
 
 def log_deploy_failure(entry: Dict[str, Any]) -> None:
@@ -65,7 +75,7 @@ def render_html(page_json: dict) -> str:
   <div class="site-shell">
     <header class="site-header">
       <a class="brand" href="./index.html"><span>💸</span>떼인 돈 계산기</a>
-      <a class="ghost-link" href="../index.html">메인 계산기</a>
+      <a class="ghost-link" href="./calculator.html">메인 계산기</a>
     </header>
 
     <div class="breadcrumb-wrap">
@@ -73,7 +83,7 @@ def render_html(page_json: dict) -> str:
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 3.172 3 10.172V20a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-9.828l-9-7Z"/>
         </svg>
-        <a href="../index.html">홈</a>
+        <a href="./calculator.html">홈</a>
         <span class="breadcrumb-sep">›</span>
         <a href="./index.html">상황별 미수금 가이드</a>
         <span class="breadcrumb-sep">›</span>
@@ -106,7 +116,7 @@ def render_html(page_json: dict) -> str:
     <section class="section">
       <h2>떼인 돈 계산기로 금액 확인하기</h2>
       <p>원금과 약정일을 넣어 지연손해금을 계산해 두면 요구액을 명확히 정리할 수 있습니다. 금액을 확인한 뒤 내용증명이나 지급명령 서류를 준비할지 검토해 보세요.</p>
-      <a class="cta" href="../index.html">떼인 돈 계산기 열기</a>
+      <a class="cta" href="./calculator.html">떼인 돈 계산기 열기</a>
       <div class="notice-box">
         이 계산기는 입력하신 값을 기준으로 한 <strong>참고용 시뮬레이션</strong>입니다.<br />
         실제 소송·집행 결과와 다를 수 있으며, 최종 판단은 법률 전문가와 상의해 주세요.
@@ -177,12 +187,25 @@ def git_commit_and_push(message: str) -> None:
 
 def run_html_and_deploy(case_id: str, page_json: dict) -> Dict[str, Any]:
     """
-    HTML 렌더 → 저장 → 배포(스텁)까지 수행하고, 실패 시 deploy_failures.jsonl에 기록.
+    HTML 렌더 → 저장 → pages.json 업데이트 → sitemap 생성 → 배포(스텁)까지 수행하고,
+    실패 시 deploy_failures.jsonl에 기록.
     """
     timestamp = datetime.utcnow().isoformat()
     try:
         html = render_html(page_json)
         path = save_html(case_id, html)
+        
+        # pages.json 업데이트
+        page_meta = extract_page_meta_from_page_json(page_json)
+        page_meta["slug"] = case_id  # case_id를 slug로 사용
+        update_pages_json(PUBLIC_DIR, page_meta)
+        
+        # sitemap.xml 재생성
+        build_sitemap(PUBLIC_DIR, DEFAULT_BASE_URL)
+        
+        # 정적 파일 복사 (robots.txt, google*.html, naver*.html 등)
+        copy_static_files_to_public(ROOT_DIR, PUBLIC_DIR)
+        
         success, message = deploy_stub(path)
         if not success:
             raise RuntimeError(message)
@@ -200,4 +223,103 @@ def run_html_and_deploy(case_id: str, page_json: dict) -> Dict[str, Any]:
         }
         log_deploy_failure(entry)
         return {"status": "failed", "error": str(exc)}
+
+
+def init_public_directory() -> None:
+    """
+    public 디렉토리를 초기화한다.
+    - 정적 파일 복사
+    - pages.json이 없으면 기존 페이지들로 초기화
+    - sitemap.xml 생성
+    """
+    # 정적 파일 복사
+    copy_static_files_to_public(ROOT_DIR, PUBLIC_DIR)
+    
+    # pages.json 초기화 (없으면)
+    pages_json_path = PUBLIC_DIR / "pages.json"
+    if not pages_json_path.exists():
+        # 기존 HTML 파일들로 pages.json 초기화
+        _init_pages_json_from_existing_html()
+    
+    # sitemap 생성
+    build_sitemap(PUBLIC_DIR, DEFAULT_BASE_URL)
+
+
+def _init_pages_json_from_existing_html() -> None:
+    """기존 HTML 파일들로 pages.json을 초기화한다."""
+    # 알려진 페이지들 (기존 index.html에서 하드코딩된 것들)
+    known_pages = [
+        {
+            "slug": "freelancer-design-90",
+            "title": "떼인 디자인비 90만 원, 소액이라 포기? 프리랜서 미수금 정리법",
+            "category": "프리랜서 · 소액",
+            "description": "소송 비용이 부담될 때 노동청 진정이나 지급명령 같은 절차를 비교해 볼 수 있도록 정리했습니다.",
+        },
+        {
+            "slug": "yoga-instructor-gym-closed",
+            "title": "헬스장 폐업 후 잠적한 사장, 강사료 체불 대지급금 신청 가이드",
+            "category": "폐업 · 임금체불",
+            "description": "사업주와 연락이 닿지 않아도 노동청 진정과 대지급금 제도를 어떻게 검토할지 살펴볼 수 있도록 안내합니다.",
+        },
+        {
+            "slug": "construction-daily-wage-150",
+            "title": "건설 현장 일당 체불, 근로계약서 없어도 노동청 신고하는 법",
+            "category": "건설 · 일용직",
+            "description": "출역 일보와 통장 내역을 모아 체불 신고를 준비하고 책임 주체를 정리해 보는 데 도움이 되는 흐름을 담았습니다.",
+        },
+        {
+            "slug": "editor-freelancer-60",
+            "title": "출판사 외주비 상습 체불, 60만 원 소액이라 무시한다면?",
+            "category": "출판 · 소액 체불",
+            "description": "전자소송 지급명령 등 절차를 참고해 인지 부담을 줄이고 지연이자 청구를 검토해 볼 수 있는 방법을 정리했습니다.",
+        },
+        {
+            "slug": "marketer-contract-dispute-500",
+            "title": "마케팅 용역비 미지급, 불리한 계약서와 성과 시비 대처법",
+            "category": "마케팅 · 용역비",
+            "description": "성과 논쟁에 대비해 제출·승인 증빙을 정리하고, 가압류나 지급 청구 같은 선택지를 검토해 볼 때 도움이 되는 포인트를 모았습니다.",
+        },
+        {
+            "slug": "friend-loan-no-contract-1000",
+            "title": "차용증 없는 친구 돈거래 1천만 원, 증여 아닌 대여금 입증하기",
+            "category": "지인 · 대여금",
+            "description": "계좌이체와 대화 기록을 정리해 대여 사실을 설명하고, 독촉·신청 절차를 고민해 볼 때 참고할 수 있는 흐름을 제공합니다.",
+        },
+        {
+            "slug": "colleague-urgent-loan-500",
+            "title": "직장 동료에게 빌려준 급전 500만 원, 지급명령 신청 절차",
+            "category": "직장 · 대여금",
+            "description": "퇴사한 동료에게 대여금을 요구할 때 지급명령 등 절차를 어떻게 준비할지 단계별로 참고할 수 있도록 정리했습니다.",
+        },
+        {
+            "slug": "second-hand-fraud-30",
+            "title": "중고나라 사기 피해 30만 원, 경찰 신고와 배상명령 신청",
+            "category": "중고거래 · 사기",
+            "description": "형사 재판 과정에서 배상명령 제도를 함께 고려해 볼 수 있도록 절차 흐름을 안내합니다.",
+        },
+        {
+            "slug": "ex-lover-living-expense-2000",
+            "title": "헤어진 연인에게 빌려준 2천만 원, 데이트 비용 vs 대여금 구분",
+            "category": "연인 · 대여금",
+            "description": "생활비·월세 대납 등을 대여금과 구분해 기록을 남기고, 청구 범위를 정리하는 데 도움이 되는 체크포인트를 담았습니다.",
+        },
+        {
+            "slug": "cleaning-service-dispute-40",
+            "title": "입주 청소 잔금 40만 원 미지급, 고객 불만과 대금 청구",
+            "category": "서비스 · 소액 분쟁",
+            "description": "작업 완료 사진과 견적서를 모아두면 소액심판·내용증명 등 대응 절차를 검토할 때 도움이 됩니다.",
+        },
+    ]
+    
+    from datetime import timezone
+    now = datetime.now(timezone.utc).isoformat()
+    
+    for page in known_pages:
+        page["created_at"] = now
+        page["updated_at"] = now
+    
+    # pages.json 저장
+    pages_json_path = PUBLIC_DIR / "pages.json"
+    with pages_json_path.open("w", encoding="utf-8") as f:
+        json.dump(known_pages, f, ensure_ascii=False, indent=2)
 
