@@ -5,13 +5,13 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/</loc>
-    <lastmod>2025-12-29T19:16:50+00:00</lastmod>
+    <lastmod>2025-12-30T19:09:18+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/index.html</loc>
-    <lastmod>2025-12-29T19:16:50+00:00</lastmod>
+    <lastmod>2025-12-30T19:09:18+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -228,6 +228,12 @@
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/fr-unpaid-1200000-45d.html</loc>
     <lastmod>2025-12-29T19:09:28+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://gentle-yeot-a0c73f.netlify.app/freelancer-misugum-1200000.html</loc>
+    <lastmod>2025-12-30T19:09:18+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
