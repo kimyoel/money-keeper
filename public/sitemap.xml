@@ -5,13 +5,13 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/</loc>
-    <lastmod>2026-01-04T19:12:01+00:00</lastmod>
+    <lastmod>2026-01-04T19:15:30+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/index.html</loc>
-    <lastmod>2026-01-04T19:12:01+00:00</lastmod>
+    <lastmod>2026-01-04T19:15:30+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -95,7 +95,7 @@
   </url>
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/case.html</loc>
-    <lastmod>2026-01-04T19:12:01+00:00</lastmod>
+    <lastmod>2026-01-04T19:15:30+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
