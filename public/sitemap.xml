@@ -5,13 +5,13 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/</loc>
-    <lastmod>2026-01-18T19:06:50+00:00</lastmod>
+    <lastmod>2026-01-18T19:11:13+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/index.html</loc>
-    <lastmod>2026-01-18T19:06:50+00:00</lastmod>
+    <lastmod>2026-01-18T19:11:13+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -336,6 +336,12 @@
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/no-ioo-friend-3200000.html</loc>
     <lastmod>2026-01-15T19:17:04+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://gentle-yeot-a0c73f.netlify.app/no-ioo-text-evidence-1.html</loc>
+    <lastmod>2026-01-18T19:11:13+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
