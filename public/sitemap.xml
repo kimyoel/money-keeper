@@ -5,13 +5,13 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/</loc>
-    <lastmod>2026-02-15T19:04:54+00:00</lastmod>
+    <lastmod>2026-02-15T19:07:03+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/index.html</loc>
-    <lastmod>2026-02-15T19:04:54+00:00</lastmod>
+    <lastmod>2026-02-15T19:07:03+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -558,6 +558,12 @@
   <url>
     <loc>https://gentle-yeot-a0c73f.netlify.app/freelancer-unpaid-450000.html</loc>
     <lastmod>2026-02-15T19:04:54+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://gentle-yeot-a0c73f.netlify.app/friend-3m-no-io.html</loc>
+    <lastmod>2026-02-15T19:07:03+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.64</priority>
   </url>
